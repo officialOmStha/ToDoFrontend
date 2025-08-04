@@ -154,9 +154,15 @@ body {
 .todo-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 5%;
   padding: 1rem;
   border-bottom: 1px solid #ccc;
+}
+
+.todo-item-left{
+  width: 80%;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .todo-text {
@@ -209,10 +215,22 @@ body {
 .link{
   text-decoration: none;
   color: black;
+  background-color: #9c27b0;
+  border-radius: 10px;
+  padding: 6px 10px;
 }
 
-.link button{
-  background: none;
+.buttonn{
+  padding: 6px 10px;
+  border-radius: 10px;
+  background-color: #9c27b0;
+  border: none;
+}
+
+
+.Logo{
+  text-decoration: none;
   color: black;
+  font: bold;
+  font-size: 1.4rem;
 }
-

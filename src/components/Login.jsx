@@ -22,6 +22,7 @@ const Login = () => {
       const token = response.data.token;
       localStorage.setItem('token', token);
       navigate('/todo'); // ✅ navigate to /todo after login
+      window.location.reload();
     } catch (err) {
       setError('Login failed, check your credentials.');
     } finally {

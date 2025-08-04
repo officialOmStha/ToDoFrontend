@@ -18,6 +18,7 @@ const Navbar = () => {
     localStorage.setItem('token', "");
     setLogin(false);
     navigate('/');
+    checkLogin();
   };
 
   useEffect(() => {
@@ -26,14 +27,14 @@ const Navbar = () => {
 
   return (
     <nav className='nav-container'>
-      <h3>ToDo List</h3>
+      <Link to="/todo" className='Logo' onClick={checkLogin}>ToDo List</Link>
       <div className="tabs">
-        <Link to="/register" className='link'>Register</Link>
+        <Link to="/register" className='link' onClick={checkLogin}>Register</Link>
 
         {login ? (
-          <button onClick={logout}>Logout</button>
+          <button className="buttonn" onClick={logout}>Logout</button>
         ) : (
-          <Link to="/" className='link'>Login</Link>
+          <Link to="/" className='link' onClick={checkLogin}>Login</Link>
         )}
       </div>
     </nav>

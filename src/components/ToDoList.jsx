@@ -97,7 +97,8 @@ const TodoList = () => {
       <ul className="todo-list">
         {todos.map((todo) => (
           <li key={todo.id} className="todo-item">
-            <input
+            <div className='todo-item-left'>
+              <input
               type="checkbox"
               checked={todo.completed}
               onChange={() => toggleComplete(todo.id, todo.completed)}
@@ -106,6 +107,7 @@ const TodoList = () => {
             <span className={`todo-text ${todo.completed ? 'completed' : ''}`}>
               {todo.name}
             </span>
+            </div>
             <button
               onClick={() => deleteTask(todo.id)}
               className="delete-button"
