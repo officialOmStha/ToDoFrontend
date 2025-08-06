@@ -25,7 +25,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://127.0.0.1:8000/register/', form);
+      const res = await axios.post('https://officialomstha.pythonanywhere.com/register/', form);
       localStorage.setItem('token', res.data.token);
       navigate('/todo');
     } catch (err) {
