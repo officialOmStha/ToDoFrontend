@@ -15,7 +15,7 @@ const Login = () => {
     setError('');
     setLoading(true);
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api-token-auth/', {
+      const response = await axios.post('https://officialomstha.pythonanywhere.com/api-token-auth/', {
         username,
         password
       });

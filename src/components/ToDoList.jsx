@@ -12,7 +12,7 @@ const TodoList = () => {
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/tasks/', {
+      const response = await axios.get('https://officialomstha.pythonanywhere.com/tasks/', {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -26,7 +26,7 @@ const TodoList = () => {
   const toggleComplete = async (taskId, currentStatus) => {
     try {
       await axios.patch(
-        `http://127.0.0.1:8000/tasks/${taskId}/`,
+        `https://officialomstha.pythonanywhere.com/tasks/${taskId}/`,
         { completed: !currentStatus },
         {
           headers: {
@@ -45,7 +45,7 @@ const TodoList = () => {
     if (!newTask.trim()) return;
     try {
       const response = await axios.post(
-        'http://127.0.0.1:8000/tasks/',
+        'https://officialomstha.pythonanywhere.com/tasks/',
         { name: newTask },
         {
           headers: {
@@ -63,7 +63,7 @@ const TodoList = () => {
 
   const deleteTask = async (taskId) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/tasks/${taskId}/`, {
+      await axios.delete(`https://officialomstha.pythonanywhere.com/tasks/${taskId}/`, {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -92,7 +92,7 @@ const TodoList = () => {
     }
     try {
       await axios.patch(
-        `http://127.0.0.1:8000/tasks/${taskId}/`,
+        `https://officialomstha.pythonanywhere.com/tasks/${taskId}/`,
         { name: editingText },
         {
           headers: {
