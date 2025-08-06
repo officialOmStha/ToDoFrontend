@@ -1,36 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const MobileNavbar = () => {
-  const [open, setOpen] = useState(false);
-  const [login, setLogin] = useState(!!localStorage.getItem('token'));
+const Navbar = () => {
+  const [login, setLogin] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setLogin(!!token);
+  }, []);
 
   const logout = () => {
     localStorage.setItem('token', "");
     setLogin(false);
-    setOpen(false);
     navigate('/');
   };
 
   return (
-    <nav className="mobile-navbar">
-      <div className="mobile-header">
-        <Link to="/todo" className="mobile-logo">ToDo</Link>
-        <button className="hamburger" onClick={() => setOpen(!open)}>☰</button>
+    <nav className="nav-container">
+      <Link to="/todo" className="Logo">
+        ToDo
+      </Link>
+
+      <div className="tabs">
+        <Link to="/" className="link">
+          Login
+        </Link>
+        <Link to="/register" className="link">
+          Register
+        </Link>
+
+        {login && (
+          <button onClick={logout} className="buttonn">
+            Logout
+          </button>
+        )}
       </div>
-      {open && (
-        <div className="mobile-menu">
-          <Link to="/register" onClick={() => setOpen(false)}>Register</Link>
-          {login ? (
-            <button onClick={logout}>Logout</button>
-          ) : (
-            <Link to="/" onClick={() => setOpen(false)}>Login</Link>
-          )}
-        </div>
-      )}
     </nav>
   );
 };
 
-export default MobileNavbar;
+export default Navbar;
