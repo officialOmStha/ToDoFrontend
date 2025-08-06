@@ -8,7 +8,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(-45deg, #6a11cb, #2575fc, #ff6a00, #fddb92);
   background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
+  animation: gradientShift 30s ease infinite;
   min-height: 100vh;
 }
 
@@ -102,9 +102,8 @@ body {
 
 /* ===== Todo List Styles ===== */
 .todo-container {
-  max-width: 600px;
-  margin: auto;
-  padding: 2rem;
+  width: 100%;
+  padding: 5% 10%;
 }
 
 .todo-title {
@@ -197,10 +196,11 @@ body {
 
 .nav-container{
   position: fixed;
+  top: 0%;
   display: flex;
   width: 100%;
   gap: 75%;
-  padding: 20px 60px;
+  padding: 15px 70px;
   background: rgba(255, 255, 255, 0.1); /* Transparent white */
   backdrop-filter: blur(10px);          /* Apply blur */
   -webkit-backdrop-filter: blur(10px);  /* Safari support */
@@ -215,16 +215,26 @@ body {
 .link{
   text-decoration: none;
   color: black;
-  background-color: #9c27b0;
+  background-color: skyblue;
   border-radius: 10px;
   padding: 6px 10px;
+}
+
+.link:hover{
+  background-color: rgb(28, 147, 194);
+  color: white;
 }
 
 .buttonn{
   padding: 6px 10px;
   border-radius: 10px;
-  background-color: #9c27b0;
+  background-color: #f44336;
   border: none;
+}
+
+.buttonn:hover{
+  background-color: #d32f2f;  
+  color: white;
 }
 
 
@@ -234,3 +244,65 @@ body {
   font: bold;
   font-size: 1.4rem;
 }
+
+
+.edit-button {
+  background-color: #4caf50; /* Green */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.edit-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.edit-button:focus {
+  outline: 2px solid #2e7d32; /* Focus outline */
+  outline-offset: 2px;
+}
+
+.save-button {
+  background-color: #2196f3; /* Blue */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.save-button:hover {
+  background-color: #1976d2; /* Darker blue on hover */
+}
+
+.save-button:focus {
+  outline: 2px solid #0d47a1;
+  outline-offset: 2px;
+}
+
+.cancel-button {
+  background-color: #f44336; /* Red */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cancel-button:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+
+.cancel-button:focus {
+  outline: 2px solid #b71c1c;
+  outline-offset: 2px;
+}
+

@@ -5,6 +5,8 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState('');
   const [newTask, setNewTask] = useState('');
+  const [editingId, setEditingId] = useState(null);
+  const [editingText, setEditingText] = useState('');
 
   const token = localStorage.getItem('token');
 
@@ -73,6 +75,40 @@ const TodoList = () => {
     }
   };
 
+  const startEditing = (todo) => {
+    setEditingId(todo.id);
+    setEditingText(todo.name);
+  };
+
+  const cancelEditing = () => {
+    setEditingId(null);
+    setEditingText('');
+  };
+
+  const saveEdit = async (taskId) => {
+    if (!editingText.trim()) {
+      setError('Task name cannot be empty.');
+      return;
+    }
+    try {
+      await axios.patch(
+        `http://127.0.0.1:8000/tasks/${taskId}/`,
+        { name: editingText },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      setEditingId(null);
+      setEditingText('');
+      fetchTodos();
+    } catch (err) {
+      console.error('Failed to update task name:', err);
+      setError('Could not update task.');
+    }
+  };
+
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -96,24 +132,62 @@ const TodoList = () => {
 
       <ul className="todo-list">
         {todos.map((todo) => (
-          <li key={todo.id} className="todo-item">
-            <div className='todo-item-left'>
+          <li key={todo.id} className="todo-item" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div className="todo-item-left" style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1 }}>
               <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => toggleComplete(todo.id, todo.completed)}
-              className="todo-checkbox"
-            />
-            <span className={`todo-text ${todo.completed ? 'completed' : ''}`}>
-              {todo.name}
-            </span>
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => toggleComplete(todo.id, todo.completed)}
+                className="todo-checkbox"
+              />
+
+              {editingId === todo.id ? (
+                <input
+                  type="text"
+                  value={editingText}
+                  onChange={(e) => setEditingText(e.target.value)}
+                  className="todo-edit-input"
+                  autoFocus
+                  style={{ flex: 1, padding: '4px' }}
+                />
+              ) : (
+                <span className={`todo-text ${todo.completed ? 'completed' : ''}`}>
+                  {todo.name}
+                </span>
+              )}
             </div>
-            <button
-              onClick={() => deleteTask(todo.id)}
-              className="delete-button"
-            >
-              Delete
-            </button>
+
+            {editingId === todo.id ? (
+              <div style={{ display: 'flex', gap: '8px', marginLeft: '10px' }}>
+                <button
+                  onClick={() => saveEdit(todo.id)}
+                  className="save-button"
+                >
+                  Save
+                </button>
+                <button
+                  onClick={cancelEditing}
+                  className="cancel-button"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', gap: '8px', marginLeft: '10px' }}>
+                <button
+                  onClick={() => startEditing(todo)}
+                  className="edit-button"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => deleteTask(todo.id)}
+                  className="delete-button"
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </li>
         ))}
       </ul>

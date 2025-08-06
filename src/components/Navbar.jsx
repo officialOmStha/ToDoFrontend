@@ -8,7 +8,8 @@ const Navbar = () => {
   const checkLogin = () => {
     const token = localStorage.getItem('token');
     if (token && token !== "") {
-      setLogin(true); 
+      setLogin(true);
+      navigate('/todo') 
     } else {
       setLogin(false); 
     }
