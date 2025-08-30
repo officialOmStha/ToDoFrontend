@@ -9,9 +9,9 @@ const MobileNav = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const logout = () => {
-    localStorage.setItem('token', "");
+    localStorage.removeItem("token")
     setLogin(false);
-    navigate('/');
+    window.location.href = "/";
   };
 
   return (
