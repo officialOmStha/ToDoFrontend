@@ -23,9 +23,11 @@ const Navbar = () => {
       </Link>
 
       <div className="tabs">
-        <Link to="/" className="link">
+        {!login && (
+          <Link to="/" className="link">
           Login
         </Link>
+        )}
         <Link to="/register" className="link">
           Register
         </Link>

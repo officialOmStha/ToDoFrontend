@@ -24,7 +24,9 @@ const MobileNav = () => {
       </div>
       {isOpen && (
         <div className="mobile-menu">
-          <Link to="/" className="mobile-link" onClick={toggleMenu}>Login</Link>
+          {!login && (
+            <Link to="/" className="mobile-link" onClick={toggleMenu}>Login</Link>
+          )}
           <Link to="/register" className="mobile-link" onClick={toggleMenu}>Register</Link>
           {login && (
             <button className="mobile-link logout" onClick={logout}>Logout</button>
